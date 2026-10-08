@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #000;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================
+   GENERAL PAGE SETTINGS
+========================= */
+
+.page {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================
+   PAGE 1
+========================= */
+
+.page-one {
+    background-image:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.05),
+            rgba(0,0,0,0.25),
+            rgba(0,0,0,0.85)
+        ),
+        url("birthday-background.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.page-one-content {
+    position: relative;
+    z-index: 5;
+
+    text-align: center;
+
+    width: 100%;
+
+    padding: 0 20px 7vh;
+}
+
+.page-one h1 {
+    color: white;
+
+    font-size: clamp(28px, 5vw, 60px);
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    line-height: 1.15;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.9),
+        0 0 20px rgba(0,0,0,0.7);
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================
+   MORE INFO BUTTON
+========================= */
+
+#moreInfo {
+    padding: 15px 35px;
+
+    background: rgba(0,0,0,0.65);
+
+    color: white;
+
+    border: 1px solid #d4a72c;
+
+    border-radius: 40px;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    animation: buttonPulse 2s infinite ease-in-out;
+
+    transition: 0.3s;
+}
+
+#moreInfo:hover {
+    background: rgba(212,167,44,0.2);
+
+    transform: scale(1.08);
+}
+
+@keyframes buttonPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+
+/* =========================
+   GOLD SPARKS
+========================= */
+
+.sparks {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+.spark {
+    position: absolute;
+
+    width: var(--size);
+    height: var(--size);
+
+    left: var(--left);
+    top: 100%;
+
+    background: #e5b43c;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 5px #ffd76a,
+        0 0 12px #e5b43c;
+
+    opacity: 0;
+
+    animation:
+        moveSpark var(--duration) linear var(--delay) infinite,
+        sparkle 1.5s ease-in-out var(--delay) infinite alternate;
+}
+
+@keyframes moveSpark {
+
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: var(--opacity);
+    }
+
+    50% {
+        transform: translate(var(--drift), -55vh);
+        opacity: var(--opacity);
+    }
+
+    90% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translate(
+            calc(var(--drift) * -0.5),
+            -110vh
+        );
+
+        opacity: 0;
+    }
+}
+
+@keyframes sparkle {
+
+    from {
+        filter: brightness(0.7);
+    }
+
+    to {
+        filter: brightness(1.6);
+    }
+}
+
+
+/* =========================
+   PAGE 2
+========================= */
+
+.page-two {
+    background: #000;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.details {
+    position: relative;
+
+    z-index: 5;
+
+    width: 90%;
+
+    max-width: 900px;
+
+    text-align: center;
+}
+
+.event-info {
+    padding: 35px 15px;
+
+    border-top: 1px solid rgba(212,167,44,0.6);
+
+    border-bottom: 1px solid rgba(212,167,44,0.6);
+}
+
+.event-info p {
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(20px, 3vw, 34px);
+
+    line-height: 1.6;
+
+    margin: 5px 0;
+
+    letter-spacing: 1px;
+}
+
+.closing {
+    margin-top: 55px;
+
+    color: white;
+
+    font-family: Georgia, serif;
+
+    font-size: clamp(24px, 4vw, 42px);
+
+    line-height: 1.2;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .page-one h1 {
+        font-size: 28px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .page-one-content {
+        padding-bottom: 6vh;
+    }
+
+    .event-info {
+        padding: 25px 5px;
+    }
+
+    .event-info p {
+        font-size: 21px;
+
+        line-height: 1.5;
+    }
+
+    .closing {
+        margin-top: 40px;
+
+        font-size: 27px;
+    }
+}
